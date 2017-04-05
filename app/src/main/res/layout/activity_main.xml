@@ -5,39 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.kayttaja.drawings.MainActivity"
-    >
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
 
-    <Button
-        android:id="@+id/toLeft"
-        android:onClick="moveLeft"
-        android:layout_width="88dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="27dp"
-        android:text="left"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginLeft="120dp"
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="187dp"
+        android:layout_height="30dp"
+        android:text="Valitse Toiminto"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="39dp"
+        android:layout_marginLeft="99dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <ListView
+        android:id="@+id/menuList"
+        android:layout_width="299dp"
+        android:layout_height="396dp"
+        android:layout_marginLeft="43dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginStart="120dp" />
-
-    <Button
-        android:id="@+id/toRight"
-        android:onClick="moveRight"
-        android:layout_width="88dp"
-        android:layout_height="48dp"
-        android:text="right"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="27dp"
-        app:layout_constraintLeft_toRightOf="@+id/toLeft"
-        android:layout_marginLeft="31dp"
-        android:layout_marginStart="31dp" />
-
-    <RelativeLayout
-        android:layout_width="373dp"
-        android:id="@+id/myDrawing"
-        android:layout_height="405dp"
-        tools:layout_editor_absoluteY="8dp"
-        tools:layout_editor_absoluteX="8dp">
-
-    </RelativeLayout>
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 </android.support.constraint.ConstraintLayout>

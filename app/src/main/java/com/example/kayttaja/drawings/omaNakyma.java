@@ -4,13 +4,14 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.AttributeSet;
 import android.view.View;
 
-/**
- * Created by kayttaja on 05/04/2017.
- */
-
 class omaNakyma extends View {
+
+    public int xKoord=100;
+    public int yKoord=800;
+    public int muutos=0;
 
     public omaNakyma(Context context)
     {
@@ -30,7 +31,7 @@ class omaNakyma extends View {
 
         piirto_aset.setColor(Color.BLUE);
         int y=200;
-        int x=600;
+        int x=600+muutos;
         int radius=10;
         for(int i=0; i<5; i++)
         {
@@ -39,7 +40,7 @@ class omaNakyma extends View {
             radius+=10;
         }
 
-        x=200;
+        x=200+muutos;
         y=200;
         radius = 10;
 
@@ -52,16 +53,19 @@ class omaNakyma extends View {
             radius+=10;
         }
 
-
-        y=800;
-        piirto_aset.setColor(Color.GREEN);
-        piirto_aset.setStrokeWidth(4);
-        canvas.drawLine(x-200, y, x+200, y, piirto_aset);
-        canvas.drawLine(x-200, y-300, x-200, y+200, piirto_aset);
+        canvas.drawCircle(xKoord,yKoord,radius, piirto_aset);
     }
 
-    public void siirraOik()
+    public void setxKoord(int x) {
+        this.xKoord=x;
+    }
+
+    public void setMuutos( int x) {
+        this.muutos+=x;
+    }
+    public int getXKoord()
     {
-
+        return xKoord;
     }
+
 }
