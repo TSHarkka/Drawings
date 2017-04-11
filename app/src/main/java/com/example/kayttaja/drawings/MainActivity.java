@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         menuList = (ListView) findViewById(R.id.menuList);
 
         String[] val_arvot = new String[] {
-                "Simppelit muodot","Diagrammi","Piirto" , "Lopeta sovellus"
+                "Simppelit muodot","Diagrammi","Piirto" , "Shakki", "Lopeta sovellus"
         };
 
         ArrayAdapter<String> oma_adapteri = new ArrayAdapter<>
@@ -44,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(akt);
                 } else if (kom_paikka == 2) {
                     akt = new Intent(MainActivity.this, Piirto.class);
+                    startActivity(akt);
+                } else if (kom_paikka == 3) {
+                    akt = new Intent(MainActivity.this, Shakki.class);
                     startActivity(akt);
                 } else {
                     Intent intent = new Intent();

@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".Muodot" />
         <activity android:name=".Piirto" />
-        <activity android:name=".Diagrammi"></activity>
+        <activity android:name=".Diagrammi" />
+        <activity android:name=".Shakki"></activity>
     </application>
 
 </manifest>
