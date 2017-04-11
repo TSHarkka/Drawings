@@ -9,8 +9,6 @@ import android.view.View;
 
 class omaNakyma extends View {
 
-    public int xKoord=100;
-    public int yKoord=800;
     public int muutos=0;
 
     public omaNakyma(Context context)
@@ -18,6 +16,7 @@ class omaNakyma extends View {
         super(context);
     }
 
+    // en ole vielä keksinyt tälle käyttöä, vaikka powerpointeissa esiintyikin.
     public omaNakyma(Context context, AttributeSet attrs)
     {
         super(context, attrs);
@@ -29,7 +28,8 @@ class omaNakyma extends View {
 
         Paint piirto_aset = new Paint();
 
-        piirto_aset.setColor(Color.BLUE);
+        // Liikkuvat kuviot
+        piirto_aset.setColor(Color.RED);
         int y=200;
         int x=600+muutos;
         int radius=10;
@@ -44,7 +44,7 @@ class omaNakyma extends View {
         y=200;
         radius = 10;
 
-        piirto_aset.setColor(Color.RED);
+        piirto_aset.setColor(Color.GREEN);
         canvas.drawCircle(x,y,radius, piirto_aset);
         for(int i=0; i<5; i++)
         {
@@ -53,19 +53,20 @@ class omaNakyma extends View {
             radius+=10;
         }
 
-        canvas.drawCircle(xKoord,yKoord,radius, piirto_aset);
+        // Staattiset kuviot
+        y=100;
+        x=200;
+        piirto_aset.setColor(Color.BLUE);
+        canvas.drawCircle(x,y,radius, piirto_aset);
+
+        y=100;
+        x=600;
+        canvas.drawRect(x-radius, y-radius, x+radius, y+radius, piirto_aset);
     }
 
-    public void setxKoord(int x) {
-        this.xKoord=x;
-    }
 
     public void setMuutos( int x) {
         this.muutos+=x;
-    }
-    public int getXKoord()
-    {
-        return xKoord;
     }
 
 }
