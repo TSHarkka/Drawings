@@ -2,12 +2,110 @@ package com.example.kayttaja.drawings;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.RelativeLayout;
+
+import java.util.ArrayList;
+
 
 public class Shakki extends AppCompatActivity {
+
+    omaShakki gNakyma;
+    Button rightBtn;
+    final static ArrayList<Point> xypist2 = new ArrayList<>();
+    final static ArrayList<Point> keskiPist2 = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shakki);
+
+        Point point = new Point();
+        point.x = 10;
+        point.y = 300;
+        xypist2.add(point);
+
+        // ruutujen keskipisteet manuaalisesti asetettuna
+        // alkupiste laudalle 200, 200, ruudun pituus 50
+        for ( int i=0; i<9; i++) {
+            for ( int j=0; j<9; j++) {
+                Point kpoint = new Point();
+                kpoint.x = j*50+50/2+200;
+                kpoint.y = i*50+50/2+200;
+                keskiPist2.add(kpoint);
+            }
+        }
+
+        gNakyma = new omaShakki(this);
+
+        rightBtn = (Button) findViewById(R.id.toRight);
+
+        RelativeLayout layout = (RelativeLayout) findViewById(R.id.myDrawing);
+        layout.addView(gNakyma, new ViewGroup.LayoutParams( RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
+
+
     }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event){
+        float touchX = event.getX();
+        float touchY = event.getY();
+        Point point2 = new Point();
+        point2.x = Math.round(touchX);
+        point2.y = Math.round(touchY)-150;   // lisäsin korjauskertoimen että menee kohdilleen
+        //xypist2.add(point2);
+
+        for (Point p : keskiPist2){
+            System.out.println(Math.pow(( Math.pow((point2.x - p.x), 2)+Math.pow((point2.y - p.y), 2)), 1/2));
+
+            // Jos kosketuspiste on alle 25 etäisyydellä ruudun keskipisteestä piirretään se siihen.
+            if ( Math.pow(( Math.pow((point2.x - p.x), 2)+Math.pow((point2.y - p.y), 2)), 1/2) <= 5 ) {
+                xypist2.add(p);
+                break;
+            }
+        }
+
+        // indicate view should be redrawn
+        gNakyma.invalidate();
+        return true;
+    }
+
+    public void moveUp(View view)
+    {
+        Point point = new Point();
+        point.x = xypist2.get(xypist2.size() - 1).getX() + 20;
+        point.y = xypist2.get(xypist2.size() - 1).getY() - 20;
+        //point.x = xypist2.get(xypist2.size()-1).x + 10;
+        //point.y = xypist2.get(xypist2.size()-1).y - 10;
+
+
+        xypist2.add(point);
+        gNakyma.invalidate();
+    }
+
+    public void moveDown(View view)
+    {
+        Point point = new Point();
+        point.x = xypist2.get(xypist2.size() - 1).getX() + 20;
+        point.y = xypist2.get(xypist2.size() - 1).getY() + 20;
+
+        xypist2.add(point);
+        gNakyma.invalidate();
+    }
+
+    public void deleteLast(View view)
+    {
+        for (int x=0; x<xypist2.size();x++)
+        {
+            xypist2.clear();
+            //xypist2.remove(xypist2.size() - 1);
+        }
+
+        gNakyma.invalidate();
+    }
+
 }
