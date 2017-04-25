@@ -6,6 +6,7 @@ package com.example.kayttaja.drawings;
 
 class Point {
     float x, y;
+    String color;
 
     @Override
     public String toString() { return x + ", " + y;}
@@ -16,5 +17,9 @@ class Point {
 
     public float getY() {
         return this.y;
+    }
+
+    public String getColor() {
+        return this.color;
     }
 }

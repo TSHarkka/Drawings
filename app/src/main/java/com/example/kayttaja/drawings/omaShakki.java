@@ -13,7 +13,7 @@ import android.view.View;
 
 class omaShakki extends View {
 
-        public int ruudunPituus=50;
+        public int ruudunPituus=60;
 
         public omaShakki(Context context)
         {
@@ -33,8 +33,8 @@ class omaShakki extends View {
             Paint piirto_aset = new Paint();
 
             // Laudan piirtäminen
-            int x=200;
-            int y=200;
+            int x=100;
+            int y=100;
             piirto_aset.setStrokeWidth(4);
             piirto_aset.setColor(Color.BLACK);
 
@@ -43,20 +43,29 @@ class omaShakki extends View {
                 y+=ruudunPituus;
             }
 
-            x=200;
-            y=200;
+            x=100;
+            y=100;
             for (int i=0; i<10; i++) {
                 canvas.drawLine(x, y, x, y + ruudunPituus*9, piirto_aset);
                 x+=ruudunPituus;
             }
 
             for (Point point1 : Shakki.xypist2) {
-                canvas.drawCircle(point1.x, point1.y, 10, piirto_aset);
+                if (point1.getColor()=="RED") {
+                    piirto_aset.setColor(Color.RED);
+                    canvas.drawCircle(point1.x, point1.y, 15, piirto_aset);
+                } else if (point1.getColor()=="BLUE") {
+                    piirto_aset.setColor(Color.BLUE);
+                    canvas.drawCircle(point1.x, point1.y, 15, piirto_aset);
+                }
             }
 
-            for (Point kpoint1 : Shakki.keskiPist2) {
+            /*for (Point kpoint1 : Shakki.keskiPist2) {
                 canvas.drawCircle(kpoint1.x, kpoint1.y, 5, piirto_aset);
-            }
+            }*/
 
         }
+
+
 }
+

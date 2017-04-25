@@ -23,9 +23,7 @@ public class Diagrammi extends AppCompatActivity {
         setContentView(R.layout.activity_diagrammi);
 
         Point point = new Point();
-        point.x = 10;
-        point.y = 300;
-        xypist2.add(point);
+
 
         gNakyma = new omaDiagram(this);
 

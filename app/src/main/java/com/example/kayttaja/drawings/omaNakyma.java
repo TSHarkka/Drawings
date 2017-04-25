@@ -36,7 +36,7 @@ class omaNakyma extends View {
         for(int i=0; i<5; i++)
         {
             canvas.drawRect(x-radius, y-radius, x+radius, y+radius, piirto_aset);
-            y+=2*radius + 10 + 50;
+            y += 2*radius + 10 + 50;
             radius+=10;
         }
 
@@ -62,6 +62,12 @@ class omaNakyma extends View {
         y=100;
         x=600;
         canvas.drawRect(x-radius, y-radius, x+radius, y+radius, piirto_aset);
+
+
+        // piirto
+        for (Point point1 : Piirto.xypist2) {
+            canvas.drawCircle(point1.x, point1.y, 10, piirto_aset);
+        }
     }
 
 
